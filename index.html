@@ -1,0 +1,44 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="复导数、解析函数与柯西–黎曼方程互动复习"><title>复变函数 · 第二章第一讲</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head><body><header><div class="eyebrow">COMPLEX ANALYSIS / STUDY NOTES</div><h1>复变函数<br>第二章第一讲</h1><p>从复平面上的方向出发，理解复导数、解析函数与柯西–黎曼方程。</p><div class="topics"><span>复导数</span><span>解析函数</span><span>柯西–黎曼方程</span></div></header><div class="layout"><nav aria-label="章节导航"><strong>本讲目录</strong><a href="#definition">01　复导数</a><a href="#demo">　　方向角实验</a><a href="#analytic">02　解析函数</a><a href="#cr">03　C–R 方程</a><a href="#examples">04　例题</a><a href="#quiz">05　随堂测验</a></nav><main><div class="warning"><strong>内容说明：</strong>依据杨楠老师《复变函数》第二章课件整理，课件例题标注页码，随堂测验为自编。原对话全文无法读取，不能核实之前的全部讲法。</div><section id="definition" class="section">
+  <p class="eyebrow">01 / 复导数</p><h2>同一个极限，所有方向都要一致</h2>
+  <p>设函数 f 在 z₀ 的某个邻域内有定义。如果差商的极限存在，就称 f 在 z₀ 处可导：</p>
+  <div class="formula">f′(z₀) = lim<sub>Δz→0</sub> [f(z₀ + Δz) − f(z₀)] / Δz</div>
+  <p>这里 Δz 是复数，可以从复平面上的任意方向、沿任意路径趋于 0。<strong>沿两条路径得到不同结果，就能证明导数不存在；沿有限条路径结果相同，还不足以证明导数存在。</strong></p>
+  <div class="cards"><article><h3>实轴方向</h3><p>令 Δz = Δx（实数），考察水平接近。</p></article><article><h3>虚轴方向</h3><p>令 Δz = iΔy（Δy 为实数），考察竖直接近。</p></article></div>
+  <p>可导必连续，连续未必可导。若 f′(z₀) ≠ 0，局部微小增量近似满足 Δw ≈ f′(z₀)Δz：|f′(z₀)| 给出长度缩放倍数，arg f′(z₀) 给出旋转角。（课件第 10、13–14 页）</p><p>例如 f(z) = z̄，在任意 z₀ 处，差商为 Δz̄/Δz。沿实轴为 1，沿虚轴为 −1，所以处处不可导。</p>
+</section>
+<section id="demo"><p class="eyebrow">互动实验 / 方向与差商</p><h2>转动方向，观察差商</h2><p>在复平面中让增量 h 沿不同方向靠近 0。金色箭头代表 h，绿色箭头代表差商；两者使用不同的比例尺。</p><div class="demo"><h3>方向角实验</h3><p>调整函数、方向角和增量大小，比较差商如何变化。</p><div class="demo-grid"><svg class="diagram" viewBox="0 0 300 300" role="img" aria-label="复平面：金色箭头是增量，绿色箭头是差商"><defs><marker id="gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#f2bb73"/></marker><marker id="mint" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#a9e1b9"/></marker></defs><circle cx="150" cy="150" r="100" fill="none" stroke="#527a6d" stroke-dasharray="3 5"/><path d="M25 150H275 M150 25V275" stroke="#719789"/><text x="274" y="143" fill="#d8eadc">实</text><text x="157" y="30" fill="#d8eadc">虚</text><line id="h-arrow" x1="150" y1="150" stroke="#f2bb73" stroke-width="4" marker-end="url(#gold)"/><line id="q-arrow" x1="150" y1="150" stroke="#a9e1b9" stroke-width="4" marker-end="url(#mint)"/></svg><div class="controls"><label>选择函数<select id="mode"><option value="square">f(z) = z²，z₀ = 1</option><option value="conjugate">f(z) = z̄，z₀ = 0</option></select></label><label for="angle">方向角 θ：<span id="angleValue"></span></label><input id="angle" type="range" min="0" max="360" step="1" value="45"><label for="radius">增量大小 |h|：<span id="radiusValue"></span></label><input id="radius" type="range" min="0.05" max="1" step="0.05" value="0.5"><div class="readout">金色 h = <span id="h-value"></span><br>绿色差商 = <span id="q-value"></span></div><p id="interpret" aria-live="polite"></p></div></div></div><p class="note">图示只展示有限的方向和增量，帮助建立直觉；它本身不能证明极限存在。</p></section>
+<section id="analytic" class="section">
+  <p class="eyebrow">02 / 解析函数</p><h2>一点可导，不等于这一点解析</h2>
+  <p>若 f 在 z₀ 的某个邻域内<strong>每一点都可导</strong>，则称 f 在 z₀ 解析；若 f 在区域 D 内每一点都解析，则称 f 在 D 内解析。解析是邻域性质，可导是点上的性质。</p>
+  <div class="formula">在 z₀ 解析 ⇒ 在 z₀ 可导；反过来一般不成立。</div>
+  <p>例：f(z) = |z|²。因为 [f(Δz) − f(0)] / Δz = Δz̄ → 0，所以 f 在 0 可导，导数为 0；但它在任何非零点都不可导，故在 0 不解析。</p>
+</section>
+<section id="cr" class="section">
+  <p class="eyebrow">03 / 柯西–黎曼方程</p><h2>把复问题拆成实部和虚部</h2>
+  <p>令 z = x + iy，f(z) = u(x,y) + iv(x,y)。在点 (x₀,y₀)，若 f 可导，则一阶偏导数存在并满足柯西–黎曼方程：</p>
+  <div class="formula">u<sub>x</sub> = v<sub>y</sub>，　u<sub>y</sub> = −v<sub>x</sub></div>
+  <p>此时 f′(z₀) = u<sub>x</sub> + iv<sub>x</sub> = v<sub>y</sub> − iu<sub>y</sub>，各偏导均在对应点取值。</p>
+  <h3>课件中的充要条件</h3><p>在 z₀ = x₀ + iy₀ 处，f 可导<strong>当且仅当</strong> u、v 在 (x₀,y₀) 作为二元实函数可微，并且在该点满足 C–R 方程。在区域 D 内解析，当且仅当 u、v 在 D 内可微并处处满足 C–R 方程。（课件第 29–30 页）</p><div class="note"><strong>动手看图：</strong>比较旋转、反射与拉伸，理解 C–R 方程的几何含义。<br><a href="extra.html">打开几何互动图 →</a></div><h3>怎样使用这个判别法？</h3>
+  <ol><li><strong>必要性：</strong>若 f 在一点可导，则该点满足 C–R 方程。方程不成立，可直接否定可导。</li><li><strong>常用充分条件：</strong>若 u、v 的一阶偏导数在该点某邻域内存在、在该点连续，且在该点满足 C–R 方程，则 f 在该点可导。</li><li>若上述连续性条件在区域内每一点都满足，且 C–R 方程在区域内处处成立，则 f 在该区域解析。</li></ol>
+  <aside class="notice">注意：仅在某点满足 C–R 方程，通常不足以保证该点可导；偏导连续是常用的充分条件，不是可导的必要条件。</aside>
+</section>
+<section id="examples" class="section">
+  <p class="eyebrow">04 / 课件例题与补充</p><h2>常见判断</h2>
+  <details><summary>课件例 1（第 7 页）　求 f(z) = z² 的导数，并判断解析性</summary><p>直接计算差商：[ (z + Δz)² − z² ] / Δz = 2z + Δz → 2z。因此 f′(z) = 2z，处处可导，故在整个复平面解析。</p></details>
+  <details><summary>课件例 5（第 19 页）　判断 f(z) = z̄ 在何处可导</summary><p>对任意 z₀，沿实轴和虚轴接近得到的差商分别是 1 和 −1，两者不同，所以 f 处处不可导，也处处不解析。</p></details>
+  <details><summary>课件例 4（第 16–17 页）　判断 f(z) = |z|² 在何处可导、何处解析</summary><p>写成 u = x² + y²，v = 0。C–R 方程要求 2x = 0、2y = 0，仅在原点满足。偏导连续，所以原点可导；其余点由必要性知不可导。导数 f′(0) = 0。原点任意邻域都含非零点，因此函数处处不解析。</p></details>
+  <details><summary>课件例 2（第 8–9 页）　f(z) = x + 2iy 是否可导？</summary><p>差商为 (Δx + 2iΔy)/(Δx + iΔy)。沿实轴趋近得到 1，沿虚轴趋近得到 2，结果不同，因此处处不可导。</p></details>
+  <details><summary>课件例 6（第 31–32 页）　f(z) = √|xy| 在原点满足 C–R 方程吗？是否可导？</summary><p>令 u = √|xy|，v = 0。在原点，四个偏导数均为 0，所以满足 C–R 方程。但沿实轴趋近时差商为 0；沿 y = x、x &gt; 0 趋近时，差商为 1/(1+i)，两者不同，故原点不可导。这说明仅有 C–R 方程还不够。</p></details>  <details><summary>补充例题　已知 u = x² − y²，求使 f = u + iv 解析的 v</summary><p>C–R 方程给出 v<sub>y</sub> = 2x，v<sub>x</sub> = 2y。先对 y 积分：v = 2xy + φ(x)。再对 x 求导，得 2y + φ′(x) = 2y，所以 φ 为实常数 C。故 v = 2xy + C，f(z) = z² + iC。</p></details>
+</section>
+<section id="quiz" class="section">
+  <p class="eyebrow">05 / 自编测验</p><h2>检验一下</h2><p>先独立判断，再展开查看答案。</p>
+  <details><summary>1. 若沿实轴和虚轴的差商极限相同，就一定可导。（判断）</summary><p><strong>错误。</strong>必须对所有趋近方式有同一个极限；有限条路径只能帮助排除可导性。</p></details>
+  <details><summary>2. 函数在 z₀ 可导，就一定在 z₀ 解析。（判断）</summary><p><strong>错误。</strong>解析要求某个邻域内每一点都可导。例如 |z|² 仅在原点可导，却在原点不解析。</p></details>
+  <details><summary>3. f(z) = z² 在 z = 1 + i 处的导数是多少？</summary><p><strong>2 + 2i。</strong>因为 f′(z) = 2z。</p></details>
+  <details><summary>4. u = x² − y²，v = 2xy 是否满足 C–R 方程？</summary><p><strong>满足。</strong>u<sub>x</sub> = 2x = v<sub>y</sub>，u<sub>y</sub> = −2y = −v<sub>x</sub>。偏导连续，所以对应函数处处解析。</p></details>
+  <details><summary>5. f(z) = z̄ 在 z = 0 可导吗？</summary><p><strong>不可导。</strong>差商沿实轴为 1，沿虚轴为 −1，极限不存在。</p></details>
+</section>
+
+
+
+<footer>复变函数 · 第二章第一讲</footer></main></div></body></html>
