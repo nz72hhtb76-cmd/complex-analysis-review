@@ -1,0 +1,17 @@
+/* 数学字体优先使用系统的数学字体，移动设备回退浏览器数学字体 */
+math { font-family: 'Cambria Math','STIX Two Math','STIXGeneral',math,serif; }
+.course-banner { margin-bottom:30px; padding:20px 22px; border:1px solid #a6cdb8; border-radius:14px; background:#edf7ee; }
+.course-banner a,.course-link { color:#13594d; font-weight:700; }
+.course-nav { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 34px; }
+.course-nav a { padding:7px 13px; border:1px solid #c9dcd1; border-radius:22px; text-decoration:none; color:#245f52; font-size:.9rem; }
+.course-nav a[aria-current="page"] { background:#17665a; color:white; border-color:#17665a; }
+.course-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+.course-card { border:1px solid #d4e3d8; background:#fff; padding:20px; border-radius:14px; }
+.course-card h3 { margin:.4em 0; }.course-card a { color:#17665a; font-weight:700; }
+.study-wrap { max-width:900px; margin:auto; padding:30px 24px 70px; }
+.study-wrap section { margin-bottom:60px; }
+button, select, input { font:inherit; } button { cursor:pointer; border:1px solid #7cae99; border-radius:9px; background:#e5f2eb; color:#164b40; padding:9px 15px; }
+.demo-panel { padding:20px; border-radius:14px; background:#eaf4ed; margin:20px 0; }
+.demo-panel label { display:block; margin:.8em 0; }.demo-panel input[type=range] { width:100%; accent-color:#17665a; }
+@media(max-width:720px){.study-wrap{padding:24px 20px 55px}.course-nav{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;padding-bottom:8px}.course-nav a{flex:none}}
+
