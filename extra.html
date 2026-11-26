@@ -1,5 +1,41 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>柯西–黎曼方程的几何直观</title><style>
-:root{color-scheme:light; font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif; color:#172943; background:#f4f7fb}*{box-sizing:border-box}body{margin:0}main{max-width:1000px;margin:auto;padding:24px 20px 48px}a{color:#2458ae;text-decoration:none}.eyebrow{color:#426391;font-weight:700;font-size:.8rem;letter-spacing:.08em}h1{font-size:clamp(1.8rem,5vw,2.7rem);margin:.5em 0}p{line-height:1.8;color:#42536b}.card{background:white;border:1px solid #e1e9f3;border-radius:18px;padding:22px;box-shadow:0 12px 32px #1b3a6110;margin-top:18px}.controls{display:flex;flex-wrap:wrap;gap:18px;align-items:end}label{display:grid;gap:7px;font-weight:700;font-size:.92rem;flex:1;min-width:220px}select{width:100%;padding:11px;border:1px solid #c6d4e4;border-radius:9px;background:#fff;font:inherit;color:#172943}input{width:100%;accent-color:#2458ae}.plots{display:grid;grid-template-columns:1fr 1fr;gap:16px}.plot{background:#f7faff;border-radius:12px;padding:10px}.plot h2{font-size:1rem;margin:4px 8px}.plot canvas{display:block;width:100%;height:auto;aspect-ratio:1;max-height:330px}#result{background:#edf4ff;border-left:4px solid #4775c4;border-radius:8px;padding:12px 16px;line-height:1.8}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.9rem}.legend span:before{content:"";display:inline-block;width:11px;height:11px;border-radius:50%;background:#2563c5;margin-right:7px}.legend span+span:before{background:#e56352}.math{font-family:Georgia,"Times New Roman",serif;font-size:1.15em;color:#123367} @media(max-width:600px){main{padding:18px 15px 36px}.card{padding:16px}.plots{grid-template-columns:1fr}.plot canvas{max-height:270px}}
-</style></head><body><main><a href="index.html">← 返回复习主页</a><p class="eyebrow">第二章 · 几何直观</p><h1>从小向量看柯西–黎曼方程</h1><p>拖动角度，观察一对相互垂直的小向量经过线性映射后的变化。蓝色向量转向红色向量，原来是逆时针 90°。</p><section class="card" aria-label="交互演示"><div class="controls"><label>选择映射<select id="mapping"><option value="square">f(z)=z² 在 z₀=1 的线性化：h ↦ 2h</option><option value="conjugate">共轭映射：h ↦ h̄</option><option value="stretch">对照：不等比例拉伸 h ↦ 2x+iy</option></select></label><label>蓝色向量方向：<output id="angleValue" for="angle">30°</output><input type="range" id="angle" min="0" max="180" value="30" step="1"></label></div><p class="legend"><span>第一个小向量</span><span>逆时针旋转 90° 的第二个小向量</span></p><div class="plots"><div class="plot"><h2>输入平面</h2><canvas id="inputCanvas" width="600" height="600" aria-label="输入平面的正交向量图"></canvas></div><div class="plot"><h2>输出平面</h2><canvas id="outputCanvas" width="600" height="600" aria-label="映射后的向量图"></canvas></div></div><p id="result" aria-live="polite"></p></section><section class="card"><h2>图像背后的方程</h2><p>设 <span class="math">f=u+iv</span>。实可微时，局部线性映射的矩阵为 <span class="math">[[uₓ, uᵧ], [vₓ, vᵧ]]</span>。满足柯西–黎曼方程 <span class="math">uₓ=vᵧ，uᵧ=−vₓ</span> 时，它具有形式 <span class="math">[[a, −b], [b, a]]</span>，相当于乘以复数 <span class="math">a+bi</span>。当导数不为零时，这对应统一缩放与旋转，保持角度及方向。</p><p><strong>注意：</strong>共轭映射同样保持垂直和长度，却反转方向，因此只观察是否垂直是不够的；导数为零时线性映射会把向量压到零，不能据此讨论角度。图形提供直观理解，不能代替复可导的极限证明。</p></section></main><script src="extra.js"></script></body></html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>柯西–黎曼方程的几何直观</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;color:#172d31;background:#fcfbf6}*{box-sizing:border-box}body{margin:0}main{max-width:1000px;margin:auto;padding:28px 20px 56px}a{color:#17665a;text-decoration:none}.eyebrow{color:#59857a;font-weight:700;font-size:.8rem;letter-spacing:.12em}h1{font-size:clamp(1.85rem,5vw,2.8rem);line-height:1.25;margin:.5em 0}h2{line-height:1.35}p{line-height:1.85;color:#405857}.card{background:#fff;border:1px solid #d9e4dc;border-radius:18px;padding:24px;box-shadow:0 12px 32px #1b3a610b;margin-top:20px}.controls{display:flex;flex-wrap:wrap;gap:18px;align-items:end}label{display:grid;gap:7px;font-weight:700;font-size:.94rem;flex:1;min-width:min(220px,100%)}select{width:100%;padding:11px;border:1px solid #c6d9d0;border-radius:9px;background:#fff;font:inherit;color:#172d31}input{width:100%;accent-color:#17665a}.plots{display:grid;grid-template-columns:1fr 1fr;gap:16px}.plot{background:#f5f9f6;border-radius:12px;padding:10px}.plot h2{font-size:1rem;margin:4px 8px}.plot canvas{display:block;width:100%;height:auto;aspect-ratio:1;max-height:330px}#result{background:#e5f2eb;border-left:4px solid #5ca487;border-radius:8px;padding:12px 16px;line-height:1.8}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.9rem}.legend span:before{content:"";display:inline-block;width:11px;height:11px;border-radius:50%;background:#2563c5;margin-right:7px}.legend span+span:before{background:#e56352}math{font-size:1.1em;color:#143e38}math[display="block"]{margin:0;min-width:max-content;font-size:1.15em}.equation{overflow-x:auto;text-align:center;background:#f8fbf8;border:1px solid #e1eae3;border-radius:12px;padding:18px;margin:16px 0}.equation-label{display:block;text-align:left;color:#5d7770;font-size:.82rem;margin-bottom:10px}.notice{background:#f3f8f3;border-left:4px solid #81ad96;padding:12px 16px;border-radius:0 8px 8px 0}@media(max-width:600px){main{padding:20px 16px 40px}.card{padding:17px}.plots{grid-template-columns:1fr}.plot canvas{max-height:270px}math[display="block"]{font-size:1.08em}}
+</style>
+</head>
+<body>
+<main>
+<a href="index.html">← 返回复习主页</a>
+<p class="eyebrow">第二章 · 几何直观</p>
+<h1>从小向量看柯西–黎曼方程</h1>
+<p>拖动角度，观察一对相互垂直的小向量经过线性映射后的变化。蓝色向量转向红色向量，原来是逆时针 90°。</p>
+<section class="card" aria-label="交互演示">
+<div class="controls">
+<label>选择映射<select id="mapping"><option value="square">f(z) = z² 在 z₀ = 1 的线性化：h ↦ 2h</option><option value="conjugate">共轭映射：h ↦ h̄</option><option value="stretch">对照：不等比例拉伸 h ↦ 2x + iy</option></select></label>
+<label>蓝色向量方向：<output id="angleValue" for="angle">30°</output><input type="range" id="angle" min="0" max="180" value="30" step="1"></label>
+</div>
+<p class="legend"><span>第一个小向量</span><span>逆时针旋转 90° 的第二个小向量</span></p>
+<div class="plots"><div class="plot"><h2>输入平面</h2><canvas id="inputCanvas" width="600" height="600" aria-label="输入平面的正交向量图"></canvas></div><div class="plot"><h2>输出平面</h2><canvas id="outputCanvas" width="600" height="600" aria-label="映射后的向量图"></canvas></div></div>
+<p id="result" aria-live="polite"></p>
+</section>
+<section class="card">
+<h2>图像背后的方程</h2>
+<p>设 <math aria-label="f 等于 u 加 i v"><mi>f</mi><mo>=</mo><mi>u</mi><mo>+</mo><mi>i</mi><mi>v</mi></math>。实可微时，局部线性映射对应下面的矩阵：</p>
+<div class="equation"><span class="equation-label">局部线性映射</span><math display="block" aria-label="矩阵第一行为 u 对 x 的偏导数、u 对 y 的偏导数，第二行为 v 对 x 的偏导数、v 对 y 的偏导数"><mo>[</mo><mtable columnspacing="1em" rowspacing="0.5em"><mtr><mtd><msub><mi>u</mi><mi>x</mi></msub></mtd><mtd><msub><mi>u</mi><mi>y</mi></msub></mtd></mtr><mtr><mtd><msub><mi>v</mi><mi>x</mi></msub></mtd><mtd><msub><mi>v</mi><mi>y</mi></msub></mtd></mtr></mtable><mo>]</mo></math></div>
+<p>当它满足柯西–黎曼方程：</p>
+<div class="equation"><math display="block" aria-label="u 对 x 的偏导数等于 v 对 y 的偏导数，u 对 y 的偏导数等于负的 v 对 x 的偏导数"><msub><mi>u</mi><mi>x</mi></msub><mo>=</mo><msub><mi>v</mi><mi>y</mi></msub><mo>,</mo><mspace width="1em"/><msub><mi>u</mi><mi>y</mi></msub><mo>=</mo><mo>−</mo><msub><mi>v</mi><mi>x</mi></msub></math></div>
+<p>矩阵就可以写成下面的形式，相当于把小向量乘以复数 <math aria-label="a 加 b i"><mi>a</mi><mo>+</mo><mi>b</mi><mi>i</mi></math>：</p>
+<div class="equation"><math display="block" aria-label="矩阵第一行为 a、负 b，第二行为 b、a"><mo>[</mo><mtable columnspacing="1em" rowspacing="0.5em"><mtr><mtd><mi>a</mi></mtd><mtd><mo>−</mo><mi>b</mi></mtd></mtr><mtr><mtd><mi>b</mi></mtd><mtd><mi>a</mi></mtd></mtr></mtable><mo>]</mo></math></div>
+<p>当导数不为零时，这对应统一缩放与旋转，保持角度及方向。</p>
+<p class="notice"><strong>注意：</strong>共轭映射同样保持垂直和长度，却反转方向，因此只观察是否垂直是不够的；导数为零时线性映射会把向量压到零，不能据此讨论角度。图形提供直观理解，不能代替复可导的极限证明。</p>
+</section>
+</main>
+<script src="extra.js"></script>
+</body>
+</html>
 
